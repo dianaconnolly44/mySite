@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" href="assets/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="assets/favicon.png"/>
+    <link rel="apple-touch-icon" type="image/png" href="assets/favicon.png"/>
+    <link rel="apple-touch-icon" type="image/png" href="assets/favicon.png" sizes="76x76"/>
+    <link rel="apple-touch-icon" type="image/png" href="assets/favicon.png" sizes="120x120"/>
+    <link rel="apple-touch-icon" type="image/png" href="assets/favicon.png" sizes="152x152"/>
+    <title>Diana Connolly</title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Add jQuery library -->
+    <script type="text/javascript" src="fancypants/jquery-1.10.1.min.js"></script>
+
+    <!-- Add fancyBox main JS and CSS files -->
+    <script type="text/javascript" src="fancypants/jquery.fancybox.js?v=2.1.5"></script>
+    <link rel="stylesheet" type="text/css" href="fancypants/jquery.fancybox.css?v=2.1.5" media="screen" />
+
+    <!-- Custom CSS -->
+    <link href="css/freelancer.css" rel="stylesheet">
+    <link href="css/stylish-portfolio.css" rel="stylesheet">
+    <link href="css/agency.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            /*
+             *  Simple image gallery. Uses default settings
+             */
+
+            $('.fancybox').fancybox();
+
+            /*
+             *  Different effects
+             */
+
+            // Change title type, overlay closing speed
+            $(".fancybox-effects-a").fancybox({
+                helpers: {
+                    title : {
+                        type : 'outside'
+                    },
+                    overlay : {
+                        speedOut : 0
+                    }
+                }
+            });
+
+            // Disable opening and closing animations, change title type
+            $(".fancybox-effects-b").fancybox({
+                openEffect  : 'none',
+                closeEffect : 'none',
+
+                helpers : {
+                    title : {
+                        type : 'over'
+                    }
+                }
+            });
+
+            // Set custom style, close if clicked, change title type and overlay color
+            $(".fancybox-effects-c").fancybox({
+                wrapCSS    : 'fancybox-custom',
+                closeClick : true,
+
+                openEffect : 'none',
+
+                helpers : {
+                    title : {
+                        type : 'inside'
+                    },
+                    overlay : {
+                        css : {
+                            'background' : 'rgba(238,238,238,0.85)'
+                        }
+                    }
+                }
+            });
+
+            // Remove padding, set opening and closing animations, close if clicked and disable overlay
+            $(".fancybox-effects-d").fancybox({
+                padding: 0,
+
+                openEffect : 'elastic',
+                openSpeed  : 150,
+
+                closeEffect : 'elastic',
+                closeSpeed  : 150,
+
+                closeClick : true,
+
+                helpers : {
+                    overlay : null
+                }
+            });
+
+            /*
+             *  Button helper. Disable animations, hide close button, change title type and content
+             */
+
+            $('.fancybox-buttons').fancybox({
+                openEffect  : 'none',
+                closeEffect : 'none',
+
+                prevEffect : 'none',
+                nextEffect : 'none',
+
+                closeBtn  : false,
+
+                helpers : {
+                    title : {
+                        type : 'inside'
+                    },
+                    buttons : {}
+                },
+
+                afterLoad : function() {
+                    this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+                }
+            });
+
+
+            /*
+             *  Thumbnail helper. Disable animations, hide close button, arrows and slide to next gallery item if clicked
+             */
+
+            $('.fancybox-thumbs').fancybox({
+                prevEffect : 'none',
+                nextEffect : 'none',
+
+                closeBtn  : false,
+                arrows    : false,
+                nextClick : true,
+
+                helpers : {
+                    thumbs : {
+                        width  : 50,
+                        height : 50
+                    }
+                }
+            });
+
+            /*
+             *  Media helper. Group items, disable animations, hide arrows, enable media and button helpers.
+            */
+            $('.fancybox-media')
+                .attr('rel', 'media-gallery')
+                .fancybox({
+                    openEffect : 'none',
+                    closeEffect : 'none',
+                    prevEffect : 'none',
+                    nextEffect : 'none',
+
+                    arrows : false,
+                    helpers : {
+                        media : {},
+                        buttons : {}
+                    }
+                });
+
+            /*
+             *  Open manually
+             */
+
+            $("#fancybox-manual-a").click(function() {
+                $.fancybox.open('1_b.jpg');
+            });
+
+            $("#fancybox-manual-b").click(function() {
+                $.fancybox.open({
+                    href : 'iframe.html',
+                    type : 'iframe',
+                    padding : 5
+                });
+            });
+
+            $("#fancybox-manual-c").click(function() {
+                $.fancybox.open([
+                    {
+                        href : '1_b.jpg',
+                        title : 'My title'
+                    }, {
+                        href : '2_b.jpg',
+                        title : '2nd title'
+                    }, {
+                        href : '3_b.jpg'
+                    }
+                ], {
+                    helpers : {
+                        thumbs : {
+                            width: 75,
+                            height: 50
+                        }
+                    }
+                });
+            });
+
+
+        });
+    </script>
+    <style type="text/css">
+        .fancybox-custom .fancybox-skin {
+            box-shadow: 0 0 50px #222;
+        }
+    </style>
+
+</head>
+
+<body id="page-top" class="index">
+
+
+    <!-- Portfolio Modals -->
+    <div class="portfolio-modal" id="start" >
+        <div class="modal-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <div id="thingy">
+
+                            <!-- #################### -->
+                            <h2 style="text-align:center">BHA Junior Portfolio</h2>
+                            <hr class="star-primary">
+                            <br>
+                            <br>
+                            <img class="logoMain" src="assets/DClogo3.svg" height="200px">
+                            <style>
+                            #thingy p {
+                                line-height: 16px;
+                            }
+                            #thing p.left {
+                                text-align: left;
+                            }
+                            </style>
+                            <h6>BHA Art and Cognitive Neuroscience</h6>
+                            <h6>Class of 2017</h6>
+                            <br>
+                            <i><h6 style="margin-bottom:-10px">Contact Information:</h6></i>
+                            <p><br>(650)776-2444
+                            <br>dianaconnolly@cmu.edu
+                            <br>5537 Beeler Street
+                            <br>Pittsburgh, PA 15213</p>
+                            <i><h6 style="margin-bottom:-10px">Permanent Address:</h6></i>
+                            <p><br>801 Curtis Street
+                            <br>Menlo Park, CA 94025</p>
+
+                            <br>
+                            <br>
+
+                            <!-- #################### -->
+                            <h2 style="text-align:center">   </h2>
+                            <h3>Goals Questionnaire</h3>
+                            <hr class="star-primary">
+                            
+                            
+                            <i><h6 style="margin-bottom:-10px">Which courses encouraged you to identify theoretical, conceptual, or methodological connections between your chosen concentration disciplines? How did they encourage this identification (through subject matter, readings, lectures, course work, project work, mentorship, etc.)?</h6></i>
+                            <p style="text-align: left;"><br>Two art-based classes that I have taken at CMU have been very formative in helping me to build experience with learning to connect my two disciplines of cognitive neuroscience and art. Art + the Brain (60-232) and Art + Biology (60-358), both taught by Professor Patricia Maurides, worked to combine the two realms of art and science by exposing students to the ways in which artists can represent scientific ideas through the means of art. In Art + Biology, students explored concepts of biology and completed several art projects to illustrate these ideas (e.g. learning how to use a Scanning Electron Microscope (SEM), imaging botany samples with the SEM, and then creating art pieces with the images). In Art + the Brain, students explored topics about the brain and completed several projects based on these (e.g. the sleep project, in which I created a 3D piece that represented the distorted and sporadic qualities of dreams through light installations masked by plastic coverings). Both of these classes helped me not only to learn about the two areas of my interdisciplinary studies, but also to explore the connections between these areas by means of different projects.</p>
+                            <i><h6 style="margin-bottom:-10px">Which courses helped you to apply these connections and integrate or combine your concentrations (through experiments, exercises, research projects, creative projects, etc.)? What assignments allowed you to produce this kind of interdisciplinary work?</h6></i><br>
+                            <p style="text-align: left;">Two academic-based classes that I have taken at CMU have helped me to apply my concentrations by means of utilizing my understanding of art and creative practices to strengthen my academic practices. In Systems Neuroscience (03-363), all students were assigned to present on some neuroscience topic of their choosing. Since I had completed an animation tutorial series over the previous summer for a study on how learning ways to better your sleep improves well-being in medical students, I decided to utilize snippets of my animations on Mindfulness meditation tutorials to speak to the class about ways in which this meditation not only helps one to de-stress, but it also physically improves the anatomy of the brain. In addition to showing snippets of my animations, I researched the anatomical changes of the brain that occur with regular practice of Mindfulness meditation, and showed brain-imaging photos to the class. Through this assignment, I learned how to utilize visuals and art to help communicate scientific ideas to others. In addition, I am currently building a study in my Research Methods in Cognitive Psychology (85-310) class, in which I will explore how people’s memory of visual stimuli works based on the circumstances in which the participants originally encoded these memories. This study is an application of my concentrations because it not only explores concepts about visual-based cognition, but I am also utilizing a creative skillset developed through coursework in both the sciences and the arts to be a creative thinker and connect the dots between scientific concepts.</p>
+                            <i><h6 style="margin-bottom:-10px">In which courses do you feel you improved your communication skills, either in written, visual, or oral expression? Which assignments show most clearly your skills in this area?</h6></i><br>
+                            <p style="text-align: left;">I have improved my written, visual, and oral communication skills through Research Methods, Drawing Studio (60-150), and Systems Neuroscience. In my Research Methods class, I am learning to improve my written communication skills. Last semester, I learned about how to correctly collect and analyze study data in Experimental Design in Behavioral & Social Sciences (36-309) and am now applying that knowledge to learn how to best report and communicate study findings through research write-ups in Research Methods. I improved my visual communication through Drawing Studio last year because I learned technical drawing skills and then applied them through my later projects, including the final mixed-media project that was very well-received during the final critique for its relaying of messages about identity and femininity through materials and their usage. Lastly, I improved my oral communication through Systems Neuroscience due to the presentation assignment listed in the above response. For this assignment, I had to learn the best ways in which to communicate a message to my peers through the use of oral presentation. This was a challenging task because not only was it based on detailed neuroscience concepts, but it was also in front of the largest group of people for whom I had ever presented with the class having around 100 students or more.</p>
+                            <i><h6 style="margin-bottom:-10px">Which courses allowed you to explore local and global perspectives on culture, society, and history? Which assignments pushed you to investigate and expand these perspectives?</h6></i><br>
+                            <p style="text-align: left;">I explored these topics in both Concept Studio II: Space and Time (60-201), and Innovation and Social Change (79-104). In Concept Studio II, the class spoke about topics of culture and society, including topics about gender and appropriation. I personally explored thoughts about gender and society through my projects, including a video piece in which I collaged videos of myself copying YouTubue “makeup guru” tutorials as well as a piece in which I used ponytails of my own hair mixed with fabrics – both of which explored concepts about femininity and identity in today’s society.
+                            I also explored historical aspects in Innovation and Social Change, a class in which students learned about five important innovators, including figures like Rachel Carson and Andrew Carnegie. In this class, I explored concepts about social change within different time periods and cultures – an area of study I hope to further explore in the future.</p>
+                            <i><h6 style="margin-bottom:-10px">In which courses were you able to engage in both theoretical and practical work to produce real-world knowledge? How did the assignments for these courses encourage the application of theory to practical knowledge?</h6></i><br>
+                            <p style="text-align: left;">I engaged in theoretical and practical work to produce real-world knowledge through my academic-based classes of Experimental Design and Research Methods, as well as my art-based classes of Concept Studio I: Self and Human Being (60-101) and Art + Biology. In my academic-based classes listed above, I learned how to correctly collect data as well as how to best represent and report this data. I am currently working to write up one study and am also preparing a second study. In my arts-based classes, I explored ways in which to represent real-world knowledge through the means of art. In Concept Studio I, I created a piece in which participants must put on various goggles that simulate the experience of migraine visual auras. In Art + Biology, I produced an interactive piece that represented the “Lock and Key Theory” of enzymes in which substrates have a specific and perfect fit into a certain enzyme’s binding site just like how a key perfectly fits into a certain lock. For the art piece, I produced varying sized and shaped boxes which each had unique locks on them. Participants had to use the given “substrate” key ring to search for the correct “enzyme” box (each box represented a certain enzyme necessary for plant photosynthesis). Once opened, the enzyme boxes each had certain amounts of sugar packets inside, to represent the amounts of glucose each enzyme would make during photosynthesis.</p>
+                            <i><h6 style="margin-bottom:-10px">Which courses encouraged you to think more about how decision-making on both the individual and social levels is informed by cognitive, behavioral, societal, and ethical issues? Which assignments allowed you to more closely examine how these issues affect decisions?</h6></i><br>
+                            <p style="text-align: left;">Social Psychology (85-241) taught me some of the many ways in which individuals are affected by social interactions, including things like bias and stereotypes. We further explored the effects of stereotypes during our paper assignment in which we were to explore the specific effects of stereotypes on characters and plot changes in the movie “Crash.” In this assignment, I learned how stereotyping occurs at the deepest level of human interaction, and how it can seriously affect everyone a person might interact with. In my Research Methods class, I am also exploring the concept of decision-making in the study I am currently building. The study will explore how people’s memory of visual stimuli is altered by the varying circumstances in which the participants originally encoded these memories.</p>
+                            <i><h6 style="margin-bottom:-10px">In which courses did you encounter hardship, difficulty, or struggle with course material or assignments? Which assignments challenged you (intellectually, personally) the most?</h6></i><br>
+                            <p style="text-align: left;">I have been challenged by many of my courses here at CMU, but specifically Cognitive Psychology (85-211), Systems Neuroscience, and Imaging Studio (60-160) have stood out. In both Cognitive Psychology and Systems Neuroscience, I am very passionate about the topics but had to learn to problem solve in order to manage the difficult assignments, papers, and exams. Both courses have unique and detailed levels of information required for students to memorize, and I had to strengthen my time management and study skills to succeed in these classes. 
+                            Before being accepted as a transfer into BHA, I first felt like a true art student when I took Imaging with Professor Andrew Johnson. This class was so unique in that the students, professor, and assignments were so new to me. The class was filled with brilliant minds who each pursued such different styles. The professor pushed students to perfect their skills and ideas and was very interactive. In the projects themselves, I was pushed to think about new styles and mediums in order to represent a wide range of ideas (including the assignment for which the only instruction was “create a god”). This class pushed me to break out of my comfort zone within art by exposing me to a new class environment, for which I will always be thankful.</p>
+                            <i><h6 style="margin-bottom:-10px">What areas do you feel are undeveloped or have been untouched by your previous, to-date course experiences? If so, why do you think that is? (Lack of opportunity/time constraints, lack of options, etc.) Are there courses you still wish to take that will allow you to achieve the kinds of opportunities for integration and application of your concentrations as outlined above? If you believe there is no such class at CMU, what kind of courses do you think would have fostered these experiences?</h6></i><br>
+                            <p style="text-align: left;">I know now that I want to specifically explore visual perception and its effects on people. Not many classes at CMU offer a curriculum solely dedicated to this, but I know at least two courses that could help me to explore visual perception. I hope to take Color (60-452) with Professor Clayton Merrell in order to further learn about the ways in which visuals affect people – specifically the psychology of color. I also hope to take Perception (85-370) in order to learn about the psychological and neurological bases of perception. I am unsure if I want to deeply explore the other modalities of perception (e.g. auditory) that may come along with Perception’s course work, but I do believe this class would offer me great insight into the mechanisms of visual perception.</p>
+
+                            <br>
+
+                            <!-- #################### -->
+                            <h2 style="text-align:center">   </h2>
+                            <h3>Portfolio</h3>
+                            <hr class="star-primary">
+                            
+                            
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                   <div class="col-sm-4">
+                        <a class="fancybox-effects-c" href="assets/paintPage/dissect.jpg" title="<h2>Dissecting Myself</h2>Oil on canvas, cut into circles, pinned on board with insect pins">
+                        <img src="assets/paintPage/dissect_s.jpg" class="img-responsive img-centered" alt="">
+                        </a> 
+                    </div>
+                    <div class="col-sm-4">
+                        <a class="fancybox-effects-c" href="assets/paintPage/boobs.jpg" title="<h2>She shells</h2> Oil on canvas">
+                        <img src="assets/paintPage/boobs_s.jpg" class="img-responsive img-centered" alt="">
+                        </a>                                
+                    </div>
+                    <div class="col-sm-4">
+                         <a class="fancybox-effects-c" href="assets/3dPage/necklace.png" title="<h2>Gothic Grandeur</h2>Chains and pendant on necklace display, pedestal covered in purple velvet">
+                        <img src="assets/3dPage/necklace_s.png" class="img-responsive img-centered" alt="">
+                        </a>
+                    </div>
+                </div>
+                    
+                <div class="row">
+                    <div class="col-sm-4">
+                        <a class="fancybox-effects-c" href="assets/3dPage/hairGrid.png" title="<h2>Sag</h2> My hair, sheet, medical tubing, lamp shades, felt dome">
+                         <img src="assets/3dPage/Hair 3_s.jpg" class="img-responsive img-centered" alt="">
+                         </a>
+                    </div>
+                    <div class="col-sm-4">
+                    <a class="fancybox-effects-c" href="assets/mixedmedia/petri.png" title="<h2>Petri Family Portrait</h2>Bacteria grown from individual saliva samples, portrait of individual on petri dish">
+                    <img src="assets/mixedmedia/petri_s.png" class="img-responsive img-centered" alt="">
+                    </a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a class="fancybox-effects-c" href="assets/designPage/blueWave.jpg" title="<h2>Invisible Beauty</h2>Scanning Electron Microscope photo of miniscule fern particle colorized in Adobe Photoshop">
+                        <img src="assets/designPage/blueWave_s.jpg" class="img-responsive img-centered" alt="">
+                        </a> 
+                    </div>
+                </div>
+                        
+                <div class="row">
+                    <div class="col-sm-4">
+                        <a class="fancybox-effects-c" href="assets/paintPage/rococoLint.jpg" title="<h2>Rococo Lint</h2> Lint, board, wood, clay, gold spraypaint">
+                        <img src="assets/paintPage/rococoLint_s.jpg" class="img-responsive img-centered" alt="">
+                        </a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a class="fancybox-effects-c" href="assets/3dPage/flipfoot.png" title="<h2>Flipfoot Flipbook</h2> Complex Regional Pain Syndrome progression shown through flipbook">
+                        <img src="assets/3dPage/flipfoot_s.png" class="img-responsive img-centered" alt="">
+                        </a>
+                    </div>
+                    <div class="col-sm-4">
+                    <a class="fancybox-effects-c" href="assets/mixedmedia/tongue.png" title="<h2>Look Me In The Eye</h2>Acrylic on paper, magazine cutouts, ink">
+                    <img src="assets/mixedmedia/tongue_s.png" class="img-responsive img-centered" alt="">
+                    </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <iframe width="100%;" height="315" src="https://www.youtube.com/embed/6wR9lwEMavc" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <br>
+                <br>
+
+                <!-- #################### -->
+                <h2 style="text-align:center">   </h2>
+                <h3>Resume</h3>
+                <hr class="star-primary">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <img src="assets/resume.png" class="img-responsive img-centered" alt="">
+                    </div>
+                </div>
+                
+
+                    <a href="index.html"><button type="button" class="btn btn-default" >Home</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/freelancer.js"></script>
+
+</body>
+
+</html>
