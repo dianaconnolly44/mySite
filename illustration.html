@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" href="assets/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="assets/favicon.png"/>
+    <link rel="apple-touch-icon" type="image/png" href="assets/favicon.png"/>
+    <link rel="apple-touch-icon" type="image/png" href="assets/favicon.png" sizes="76x76"/>
+    <link rel="apple-touch-icon" type="image/png" href="assets/favicon.png" sizes="120x120"/>
+    <link rel="apple-touch-icon" type="image/png" href="assets/favicon.png" sizes="152x152"/>
+    <title>Diana Connolly</title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Add jQuery library -->
+    <script type="text/javascript" src="fancypants/jquery-1.10.1.min.js"></script>
+
+    <!-- Add fancyBox main JS and CSS files -->
+    <script type="text/javascript" src="fancypants/jquery.fancybox.js?v=2.1.5"></script>
+    <link rel="stylesheet" type="text/css" href="fancypants/jquery.fancybox.css?v=2.1.5" media="screen" />
+
+    <!-- Custom CSS -->
+    <link href="css/freelancer.css" rel="stylesheet">
+    <link href="css/stylish-portfolio.css" rel="stylesheet">
+    <link href="css/agency.css" rel="stylesheet">
+
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            /*
+             *  Simple image gallery. Uses default settings
+             */
+
+            $('.fancybox').fancybox();
+
+            /*
+             *  Different effects
+             */
+
+            // Change title type, overlay closing speed
+            $(".fancybox-effects-a").fancybox({
+                helpers: {
+                    title : {
+                        type : 'outside'
+                    },
+                    overlay : {
+                        speedOut : 0
+                    }
+                }
+            });
+
+            // Disable opening and closing animations, change title type
+            $(".fancybox-effects-b").fancybox({
+                openEffect  : 'none',
+                closeEffect : 'none',
+
+                helpers : {
+                    title : {
+                        type : 'over'
+                    }
+                }
+            });
+
+            // Set custom style, close if clicked, change title type and overlay color
+            $(".fancybox-effects-c").fancybox({
+                wrapCSS    : 'fancybox-custom',
+                closeClick : true,
+
+                openEffect : 'none',
+
+                helpers : {
+                    title : {
+                        type : 'inside'
+                    },
+                    overlay : {
+                        css : {
+                            'background' : 'rgba(238,238,238,0.85)'
+                        }
+                    }
+                }
+            });
+
+            // Remove padding, set opening and closing animations, close if clicked and disable overlay
+            $(".fancybox-effects-d").fancybox({
+                padding: 0,
+
+                openEffect : 'elastic',
+                openSpeed  : 150,
+
+                closeEffect : 'elastic',
+                closeSpeed  : 150,
+
+                closeClick : true,
+
+                helpers : {
+                    overlay : null
+                }
+            });
+
+            /*
+             *  Button helper. Disable animations, hide close button, change title type and content
+             */
+
+            $('.fancybox-buttons').fancybox({
+                openEffect  : 'none',
+                closeEffect : 'none',
+
+                prevEffect : 'none',
+                nextEffect : 'none',
+
+                closeBtn  : false,
+
+                helpers : {
+                    title : {
+                        type : 'inside'
+                    },
+                    buttons : {}
+                },
+
+                afterLoad : function() {
+                    this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+                }
+            });
+
+
+            /*
+             *  Thumbnail helper. Disable animations, hide close button, arrows and slide to next gallery item if clicked
+             */
+
+            $('.fancybox-thumbs').fancybox({
+                prevEffect : 'none',
+                nextEffect : 'none',
+
+                closeBtn  : false,
+                arrows    : false,
+                nextClick : true,
+
+                helpers : {
+                    thumbs : {
+                        width  : 50,
+                        height : 50
+                    }
+                }
+            });
+
+            /*
+             *  Media helper. Group items, disable animations, hide arrows, enable media and button helpers.
+            */
+            $('.fancybox-media')
+                .attr('rel', 'media-gallery')
+                .fancybox({
+                    openEffect : 'none',
+                    closeEffect : 'none',
+                    prevEffect : 'none',
+                    nextEffect : 'none',
+
+                    arrows : false,
+                    helpers : {
+                        media : {},
+                        buttons : {}
+                    }
+                });
+
+            /*
+             *  Open manually
+             */
+
+            $("#fancybox-manual-a").click(function() {
+                $.fancybox.open('1_b.jpg');
+            });
+
+            $("#fancybox-manual-b").click(function() {
+                $.fancybox.open({
+                    href : 'iframe.html',
+                    type : 'iframe',
+                    padding : 5
+                });
+            });
+
+            $("#fancybox-manual-c").click(function() {
+                $.fancybox.open([
+                    {
+                        href : '1_b.jpg',
+                        title : 'My title'
+                    }, {
+                        href : '2_b.jpg',
+                        title : '2nd title'
+                    }, {
+                        href : '3_b.jpg'
+                    }
+                ], {
+                    helpers : {
+                        thumbs : {
+                            width: 75,
+                            height: 50
+                        }
+                    }
+                });
+            });
+
+
+        });
+    </script>
+    <style type="text/css">
+        .fancybox-custom .fancybox-skin {
+            box-shadow: 0 0 50px #222;
+        }
+    </style>
+
+</head>
+
+<body id="page-top" class="index">
+
+
+    <!-- Portfolio Modals -->
+     <div class="portfolio-modal" id="start">
+        <div class="modal-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2 style="text-align:center">Illustration Work</h2>
+                            <hr class="star-primary">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                <p class="col-sm-2">
+                </p>
+                <p style="text-align: center;" class="col-sm-8">
+                The below images are example pieces of work that I have created during my Graphic Artist internship at <a href="http://www.tobiidynavox.com/">Tobii Dynavox</a>, a company that produces Augmentative and Alternative Communication devices. I work as an illustrator to produce graphics to be shown on these devices, creating symbols used for communication as well as illustrating children's book stories. Please note that some of the below images required different styles than others.
+                </p>
+                </div>
+                <br> <br>
+
+
+                <h2 style="text-align:center">   </h2>
+                            <h3>Picture Communication Symbols</h3>
+                            <hr class="star-primary">
+
+                <div class="row">
+                <div class="col-sm-4">
+                      <a class="fancybox-effects-c" href="assets/symbols/Sloth.png" title="<h2>Sloth</h2>Adobe Illustrator">
+                        <img src="assets/symbols/Sloth.png" class="img-responsive img-centered" alt="">
+                        </a> 
+                    </div>
+                    <div class="col-sm-4">
+                      <a class="fancybox-effects-c" href="assets/symbols/Female Exercising.png" title="<h2>Female Exercising</h2>Adobe Illustrator">
+                        <img src="assets/symbols/Female Exercising.png" class="img-responsive img-centered" alt="">
+                        </a> 
+                    </div>
+                    <div class="col-sm-4">
+                      <a class="fancybox-effects-c" href="assets/symbols/Slow Dance.png" title="<h2>Slow Dance</h2>Adobe Illustrator">
+                        <img src="assets/symbols/Slow Dance.png" class="img-responsive img-centered" alt="">
+                        </a> 
+                    </div>
+                </div>
+
+                
+                <div class="row">
+                <div class="col-sm-4">
+                        <a class="fancybox-effects-c" href="assets/symbols/Female Jogging.png" title="<h2>Female Jogging</h2> Adobe Illustrator">
+                        <img src="assets/symbols/Female Jogging.png" class="img-responsive img-centered" alt="">
+                        </a>               
+                    </div>
+                    <div class="col-sm-4">
+                        <a class="fancybox-effects-c" href="assets/symbols/imagine.png" title="<h2>Child Imagining</h2> Adobe Illustrator">
+                        <img src="assets/symbols/imagine.png" class="img-responsive img-centered" alt="">
+                        </a>               
+                    </div>
+                    <div class="col-sm-4">
+                        <a class="fancybox-effects-c" href="assets/symbols/help.png" title="<h2>Children Helping</h2> Adobe Illustrator">
+                        <img src="assets/symbols/help.png" class="img-responsive img-centered" alt="">
+                        </a>               
+                    </div>
+                
+                    
+                    
+                </div>
+                <div class="row">
+                <div class="col-sm-4">
+                      <a class="fancybox-effects-c" href="assets/symbols/swing.png" title="<h2>ASL 'swing'</h2>Adobe Illustrator">
+                        <img src="assets/symbols/swing.png" class="img-responsive img-centered" alt="">
+                        </a> 
+                    </div>
+                <div class="col-sm-4">
+                      <a class="fancybox-effects-c" href="assets/symbols/parking.png" title="<h2>ASL 'parking'</h2>Adobe Illustrator">
+                        <img src="assets/symbols/parking.png" class="img-responsive img-centered" alt="">
+                        </a> 
+                    </div>
+                    <div class="col-sm-4">
+                      <a class="fancybox-effects-c" href="assets/symbols/balance.png" title="<h2>ASL 'balance'</h2>Adobe Illustrator">
+                        <img src="assets/symbols/balance.png" class="img-responsive img-centered" alt="">
+                        </a> 
+                    </div>
+                    
+                </div>
+                
+
+                <h2 style="text-align:center">   </h2>
+                            <h3>Children's Book Illustrations</h3>
+                            <hr class="star-primary">
+
+
+
+
+
+                    <div class="col-sm-6">
+                        <a class="fancybox-effects-c" href="assets/symbols/illustrations/fall.png" title="<h2>Seasonal Children's Book Page</h2> Adobe Illustrator">
+                        <img src="assets/symbols/illustrations/fall.png" class="img-responsive img-centered" alt="">
+                        </a>               
+                    </div>
+                    <div class="col-sm-6">
+                        <a class="fancybox-effects-c" href="assets/symbols/illustrations/NRG1.png" title="<h2>Energy Conservation Children's Book Page 1</h2> Adobe Illustrator">
+                        <img src="assets/symbols/illustrations/NRG1.png" class="img-responsive img-centered" alt="">
+                        </a> 
+                    </div>
+                    <div class="col-sm-6">
+                        <a class="fancybox-effects-c" href="assets/symbols/illustrations/NRG3.png" title="<h2>Energy Conservation Children's Book Page 3</h2> Adobe Illustrator">
+                        <img src="assets/symbols/illustrations/NRG3.png" class="img-responsive img-centered" alt="">
+                        </a> 
+                    </div>
+                    <div class="col-sm-6">
+                        <a class="fancybox-effects-c" href="assets/symbols/illustrations/NRG2.png" title="<h2>Energy Conservation Children's Book Page 2</h2> Adobe Illustrator">
+                        <img src="assets/symbols/illustrations/NRG2.png" class="img-responsive img-centered" alt="">
+                        </a> 
+                    </div>
+                    <div class="col-sm-6">
+                        <a class="fancybox-effects-c" href="assets/symbols/illustrations/hill1.png" title="<h2>Inauguration Children's Book Page 1</h2> Adobe Illustrator">
+                        <img src="assets/symbols/illustrations/hill1.png" class="img-responsive img-centered" alt="">
+                        </a>               
+                    </div>
+                <div class="col-sm-6">
+                        <a class="fancybox-effects-c" href="assets/symbols/illustrations/hill3.png" title="<h2>Inauguration Children's Book Page 3</h2> Adobe Illustrator">
+                        <img src="assets/symbols/illustrations/hill3.png" class="img-responsive img-centered" alt="">
+                        </a>               
+                    </div>
+                    <div class="col-sm-6">
+                        <a class="fancybox-effects-c" href="assets/symbols/illustrations/hill2.png" title="<h2>Inauguration Children's Book Page 2</h2> Adobe Illustrator">
+                        <img src="assets/symbols/illustrations/hill2.png" class="img-responsive img-centered" alt="">
+                        </a>               
+                    </div>
+
+                    <div class="col-sm-6">
+                        <a class="fancybox-effects-c" href="assets/symbols/illustrations/dianaP4.png" title="<h2>Inauguration Children's Book Page 4, In Progress</h2>Adobe Illustrator">
+                        <img src="assets/symbols/illustrations/inProgressdianaP4.png" class="img-responsive img-centered" alt="">
+                        </a>
+                    </div>
+                    
+                    <br>
+                    <br>
+                    <br>
+                <a href="index.html"><button type="button" class="btn btn-default" >Back</button></a>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/freelancer.js"></script>
+
+</body>
+
+</html>
